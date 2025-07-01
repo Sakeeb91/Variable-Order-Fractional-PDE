@@ -130,6 +130,24 @@ If you use this code in your research, please cite:
 }
 ```
 
+This work builds upon the foundational fPINNs framework:
+
+```bibtex
+@article{Pang_2019,
+   title={fPINNs: Fractional Physics-Informed Neural Networks},
+   volume={41},
+   ISSN={1095-7197},
+   url={http://dx.doi.org/10.1137/18M1229845},
+   DOI={10.1137/18m1229845},
+   number={4},
+   journal={SIAM Journal on Scientific Computing},
+   publisher={Society for Industrial & Applied Mathematics (SIAM)},
+   author={Pang, Guofei and Lu, Lu and Karniadakis, George Em},
+   year={2019},
+   month=jan, pages={A2603–A2626}
+}
+```
+
 ## License
 
 MIT License - see LICENSE file for details.
