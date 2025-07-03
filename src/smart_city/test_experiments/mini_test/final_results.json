@@ -1,0 +1,219 @@
+{
+  "experiment_config": {
+    "experiment_name": "mini_test",
+    "description": "Mini test experiment",
+    "tags": [
+      "test",
+      "mini"
+    ],
+    "urban_layout": "mixed_city",
+    "scenario_name": "summer_day",
+    "domain_size": [
+      11,
+      11,
+      3
+    ],
+    "spatial_domain": [
+      [
+        0.0,
+        10.0
+      ],
+      [
+        0.0,
+        10.0
+      ]
+    ],
+    "temporal_domain": [
+      0.0,
+      24.0
+    ],
+    "solution_network_config": {
+      "output_fields": [
+        "temperature",
+        "pollutant",
+        "humidity"
+      ],
+      "hidden_layers": 6,
+      "neurons_per_layer": 120,
+      "activation": "tanh",
+      "use_physics_constraints": true,
+      "field_coupling": true
+    },
+    "order_network_config": {
+      "output_fields": [
+        "alpha_T",
+        "alpha_C",
+        "alpha_H"
+      ],
+      "hidden_layers": 5,
+      "neurons_per_layer": 80,
+      "activation": "tanh",
+      "alpha_bounds": [
+        1.0,
+        2.0
+      ],
+      "multi_scale": true
+    },
+    "loss_config": {
+      "data_loss": {
+        "weight": 1.0,
+        "uncertainty_weighting": true,
+        "loss_type": "huber"
+      },
+      "residual_loss": {
+        "weight": 1.0,
+        "coupling_strength": 0.1,
+        "include_source_terms": true
+      },
+      "regularization": {
+        "weight": 0.01,
+        "urban_constraints_weight": 0.2,
+        "consistency_weight": 0.1
+      },
+      "adaptive_weights": true
+    },
+    "max_iterations": 20,
+    "learning_rate": 0.001,
+    "batch_size": 50,
+    "validation_split": 0.2,
+    "early_stopping_patience": 50,
+    "optimizer_type": "adam",
+    "lr_schedule": "cosine",
+    "gradient_clipping": 1.0,
+    "validation_frequency": 10,
+    "save_frequency": 500,
+    "plot_frequency": 1000,
+    "save_models": true,
+    "save_predictions": true,
+    "save_losses": true,
+    "output_dir": "test_experiments"
+  },
+  "training_history": {
+    "total_loss": [
+      891.1019704894795,
+      930.8537026058929,
+      907.350173140525,
+      910.4012282335415,
+      923.8521577770887,
+      898.5102300149174,
+      931.1356282513152,
+      898.1812381793254,
+      921.6055567431055,
+      916.3307071882316,
+      917.3560128786958,
+      921.2610032817216,
+      918.3326119180189,
+      918.8585166085356,
+      901.1744986560518,
+      915.5028589807253,
+      928.2244471511967,
+      909.37685678989,
+      917.5112131802313,
+      925.6460753687015
+    ],
+    "data_loss": [
+      357.08025506340505,
+      367.3378563391252,
+      362.47741069596077,
+      359.5266543878647,
+      367.2553360434678,
+      356.1049833769818,
+      365.8190347978187,
+      354.37825258858334,
+      367.2740663975732,
+      360.05440967106927,
+      365.5893333086747,
+      369.816643272372,
+      360.1951660966255,
+      368.15951099273457,
+      349.4751457676414,
+      366.3605584860031,
+      373.4576943218032,
+      361.03619020389374,
+      366.1549160834727,
+      368.0081220848922
+    ],
+    "residual_loss": [
+      534.0214536069767,
+      563.5155837421796,
+      544.8725093048924,
+      550.8743162102969,
+      556.5965637115103,
+      542.4049742452072,
+      565.3163143260721,
+      543.8027536576305,
+      554.3312375658035,
+      556.2760279678437,
+      551.7664267117666,
+      551.444085155164,
+      558.1371634713435,
+      550.6987393791885,
+      551.6990640784675,
+      549.1420476384791,
+      554.7664883498851,
+      548.3404009041758,
+      551.3560275384232,
+      557.6376993965192
+    ],
+    "regularization_loss": [
+      0.00026181909779383775,
+      0.0002625245880640079,
+      0.0002531396717704963,
+      0.00025763537980275536,
+      0.0002580221105842901,
+      0.0002723927284956011,
+      0.0002791274243405674,
+      0.00023193311148773203,
+      0.00025277972885126776,
+      0.0002695493186200853,
+      0.000252858254499657,
+      0.00027485418569453846,
+      0.00028235004993595956,
+      0.00026623661251252154,
+      0.00028880994299242666,
+      0.0002528562431793251,
+      0.0002644795083056482,
+      0.0002656818204332143,
+      0.00026955833537662527,
+      0.00025388729009138804
+    ],
+    "validation_loss": [
+      893.7314122759345,
+      898.5326862467516
+    ],
+    "learning_rates": [
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001
+    ]
+  },
+  "final_metrics": {
+    "best_validation_loss": 893.7314122759345,
+    "final_training_loss": 925.6460753687015,
+    "total_iterations": 19,
+    "convergence_iteration": 20
+  },
+  "urban_dataset_info": {
+    "layout_type": "mixed_city",
+    "scenario_name": "summer_day",
+    "spatial_resolution": 1.0,
+    "temporal_resolution": 12.0
+  }
+}

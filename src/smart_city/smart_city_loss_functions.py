@@ -564,9 +564,27 @@ class SmartCityCompositeLoss:
             smoothing = 0.1
             target_balance = 1.0 / 3.0  # Equal weighting target
             
-            self.data_loss.weight *= (1 - smoothing) + smoothing * (target_balance / data_ratio)
-            self.residual_loss.weight *= (1 - smoothing) + smoothing * (target_balance / residual_ratio)
-            self.regularization_loss.weight *= (1 - smoothing) + smoothing * (target_balance / reg_ratio)
+            # Prevent division by zero and overflow
+            data_ratio = max(data_ratio, 1e-8)
+            residual_ratio = max(residual_ratio, 1e-8)
+            reg_ratio = max(reg_ratio, 1e-8)
+            
+            # Limit weight adjustments to prevent explosion
+            max_adjustment = 2.0
+            min_adjustment = 0.5
+            
+            data_adj = np.clip(target_balance / data_ratio, min_adjustment, max_adjustment)
+            residual_adj = np.clip(target_balance / residual_ratio, min_adjustment, max_adjustment)
+            reg_adj = np.clip(target_balance / reg_ratio, min_adjustment, max_adjustment)
+            
+            self.data_loss.weight *= (1 - smoothing) + smoothing * data_adj
+            self.residual_loss.weight *= (1 - smoothing) + smoothing * residual_adj
+            self.regularization_loss.weight *= (1 - smoothing) + smoothing * reg_adj
+            
+            # Ensure weights stay within reasonable bounds
+            self.data_loss.weight = np.clip(self.data_loss.weight, 0.01, 10.0)
+            self.residual_loss.weight = np.clip(self.residual_loss.weight, 0.01, 10.0)
+            self.regularization_loss.weight = np.clip(self.regularization_loss.weight, 0.001, 1.0)
     
     def _compute_zone_weight(self, coordinates: np.ndarray, 
                            surface_classification: np.ndarray) -> float:
