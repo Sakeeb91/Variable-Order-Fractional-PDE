@@ -90,15 +90,23 @@ pip install -r requirements.txt
 
 ### Quick Start
 
-```python
-# Generate synthetic data
-python src/data/generate_synthetic.py
+```bash
+# Generate all synthetic datasets
+python run_experiments.py --generate-data
 
-# Train the dual-network model
-python src/training/train_variable_order.py
+# Run individual experiments
+python run_experiments.py --experiment experiment1  # Constant α recovery
+python run_experiments.py --experiment experiment2  # Smooth α(x) variation  
+python run_experiments.py --experiment experiment3  # Step function α(x)
 
-# Visualize results
-python src/experiments/visualize_results.py
+# Run all experiments
+python run_experiments.py --all
+
+# Run ablation study
+python run_experiments.py --ablation
+
+# Interactive tutorial
+python examples/quick_start_tutorial.py --all
 ```
 
 ## Key Features
