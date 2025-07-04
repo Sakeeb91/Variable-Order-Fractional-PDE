@@ -1,0 +1,47 @@
+{
+  "timestamp": "2025-07-04T05:40:02.997682",
+  "system_components": {
+    "urban_generator": true,
+    "neural_networks": true,
+    "loss_function": true,
+    "digital_twin": true,
+    "visualizer": true,
+    "experiment_suite": true
+  },
+  "data_summary": {
+    "urban_scenarios": 3,
+    "experiments_completed": 3,
+    "real_time_data_available": true
+  },
+  "experiment_results": {
+    "baseline_mixed_city": {
+      "best_loss": 497.2664617115757,
+      "training_time": 4.758368730545044,
+      "total_iterations": 49
+    },
+    "heat_island_downtown": {
+      "best_loss": 2.702884597018929,
+      "training_time": 4.1276140213012695,
+      "total_iterations": 49
+    },
+    "air_quality_industrial": {
+      "best_loss": 971.906386719804,
+      "training_time": 4.359047174453735,
+      "total_iterations": 49
+    }
+  },
+  "real_time_performance": {
+    "total_readings_processed": 15,
+    "alerts_generated": 0,
+    "system_uptime": 15.048027992248535,
+    "active_networks": 1
+  },
+  "system_capabilities": [
+    "Multi-physics urban climate modeling",
+    "Variable-order fractional PDE discovery",
+    "Real-time IoT data integration",
+    "Advanced 2D/3D visualization",
+    "Experiment management and comparison",
+    "Smart city digital twin monitoring"
+  ]
+}
